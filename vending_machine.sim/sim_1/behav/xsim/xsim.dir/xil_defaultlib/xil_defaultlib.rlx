@@ -1,0 +1,12 @@
+0.6
+2017.4
+Dec 15 2017
+21:07:18
+C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sim_1/new/sevseg_encoder_tb.vhd,1529279994,vhdl,,,,sevseg_encoder_tb,,,,,,,,
+C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sim_1/new/vending_machine_tb.vhd,1529264481,vhdl,,,,vending_machine_tb,,,,,,,,
+C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/imports/vending_machine/vending_machine.vhd,1529264792,vhdl,,,,vending_machine,,,,,,,,
+C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/new/ascii_decoder.vhd,1529197705,vhdl,C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/new/sevseg_encoder.vhd,,,ascii_decoder,,,,,,,,
+C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/new/btn_decoder.vhd,1528852747,vhdl,C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/imports/vending_machine/vending_machine.vhd,,,btn_decoder,,,,,,,,
+C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/new/led_encoder.vhd,1527372205,vhdl,C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/imports/vending_machine/vending_machine.vhd,,,led_encoder,,,,,,,,
+C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/new/sevseg_encoder.vhd,1529281756,vhdl,C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/imports/vending_machine/vending_machine.vhd,,,sevseg_encoder,,,,,,,,
+C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/new/sw_decoder.vhd,1527371631,vhdl,C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/imports/vending_machine/vending_machine.vhd,,,sw_decoder,,,,,,,,

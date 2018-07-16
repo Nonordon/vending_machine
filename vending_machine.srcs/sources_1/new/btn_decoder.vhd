@@ -32,19 +32,27 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity btn_decoder is
-    Port (  clk     : in STD_LOGIC;
-            btn     : in STD_LOGIC_VECTOR(4 downto 0);
-            output  : out STD_LOGIC_VECTOR(4 downto 0)
+    Port (  clk     : in std_logic;
+            btn     : in std_logic_vector(4 downto 0);
+            reset   : out std_logic;
+            nickel  : out std_logic;
+            dime    : out std_logic;
+            quarter : out std_logic;
+            submit  : out std_logic
             );
 end btn_decoder;
 
 architecture Behavioral of btn_decoder is
 
 begin
-    process (clk) -- Could need to be just btn, not include it, or seperate it from the btn vector
+    debouncer0    : entity work.debouncer port map(clk=>clk, input=>btn(0), output=>nickel);
+    debouncer1    : entity work.debouncer port map(clk=>clk, input=>btn(1), output=>dime);
+    debouncer2    : entity work.debouncer port map(clk=>clk, input=>btn(2), output=>quarter);
+    debouncer3    : entity work.debouncer port map(clk=>clk, input=>btn(3), output=>submit);
+    --debouncer4    : entity work.debouncer port map(clk=>clk, input=>btn(4), output=>reset);
+
+    process (btn(4))
     begin
-        if (rising_edge(clk)) then
-            output <= btn;
-        end if;
+        reset <= btn(4);
     end process;
 end Behavioral;

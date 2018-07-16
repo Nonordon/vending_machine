@@ -32,19 +32,67 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity sevseg_encoder is
-    Port (  clk     : in STD_LOGIC;
-            input   : in STD_LOGIC_VECTOR(11 downto 0); 
-            sevseg  : out STD_LOGIC_VECTOR(11 downto 0)
+    Generic ( delay : integer := 10000);
+    Port (  clk     : in std_logic;
+            input   : in std_logic_vector(15 downto 0); 
+            rst     : in std_logic;
+            dec     : in std_logic_vector(3 downto 0);
+            sevseg  : out std_logic_vector(11 downto 0)
             );
 end sevseg_encoder;
 
 architecture Behavioral of sevseg_encoder is
-
+    type STATE_TYPE is (an0, an1, an2, an3);
+    signal state  : STATE_TYPE := an0;
+    signal temp0  : std_logic_vector(6 downto 0);
+    signal temp1  : std_logic_vector(6 downto 0);
+    signal temp2  : std_logic_vector(6 downto 0);
+    signal temp3  : std_logic_vector(6 downto 0);
+    signal count : integer range 0 to delay := delay;
 begin
-    process (clk) -- Could need to be just btn, not include it, or seperate it from the btn vector
+    decoder0    : entity work.ascii_decoder port map(input=>input(3 downto 0), output=>temp0);
+    decoder1    : entity work.ascii_decoder port map(input=>input(7 downto 4), output=>temp1);
+    decoder2    : entity work.ascii_decoder port map(input=>input(11 downto 8), output=>temp2);
+    decoder3    : entity work.ascii_decoder port map(input=>input(15 downto 12), output=>temp3);
+    
+    process (clk, rst)
     begin
-        if (rising_edge(clk)) then
-            sevseg <= input;
+        if (rst = '1') then
+            count <= delay;
+            state <= an0;
+            sevseg <= "111111111111";
+        elsif (rising_edge(clk)) then
+            if (count < delay) then
+                count <= count + 1;
+            else
+                case state is
+                    when an0 =>
+                        sevseg(6 downto 0) <= temp0;
+                        sevseg(7) <= not dec(0);
+                        sevseg(11 downto 8) <= "1110";
+                        count <= 0;
+                        state <= an1;
+                    when an1 =>
+                        sevseg(6 downto 0) <= temp1;
+                        sevseg(7) <= not dec(1);
+                        sevseg(11 downto 8) <= "1101";
+                        count <= 0;
+                        state <= an2;
+                    when an2 =>
+                        sevseg(6 downto 0) <= temp2;
+                        sevseg(7) <= not dec(2);
+                        sevseg(11 downto 8) <= "1011";
+                        count <= 0;
+                        state <= an3;
+                    when an3 =>
+                        sevseg(6 downto 0) <= temp3;
+                        sevseg(7) <= not dec(3);
+                        sevseg(11 downto 8) <= "0111";
+                        state <= an0;
+                        count <= 0;
+                end case;
+            end if;
         end if;
     end process;
+        
 end Behavioral;

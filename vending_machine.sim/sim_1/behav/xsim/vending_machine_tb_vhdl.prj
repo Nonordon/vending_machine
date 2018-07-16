@@ -1,0 +1,12 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../vending_machine.srcs/sources_1/new/ascii_decoder.vhd" \
+"../../../../vending_machine.srcs/sources_1/new/btn_decoder.vhd" \
+"../../../../vending_machine.srcs/sources_1/new/led_encoder.vhd" \
+"../../../../vending_machine.srcs/sources_1/new/sevseg_encoder.vhd" \
+"../../../../vending_machine.srcs/sources_1/new/sw_decoder.vhd" \
+"../../../../vending_machine.srcs/sources_1/imports/vending_machine/vending_machine.vhd" \
+"../../../../vending_machine.srcs/sim_1/new/vending_machine_tb.vhd" \
+
+# Do not sort compile order
+nosort

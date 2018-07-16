@@ -21,6 +21,8 @@
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+USE ieee.numeric_std.ALL;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -32,38 +34,89 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity vending_machine is
-    Port (  clk     : in STD_LOGIC;
-            sw      : in STD_LOGIC_VECTOR(15 downto 0);
-            btn     : in STD_LOGIC_VECTOR(4 downto 0);
-            --rst     : in STD_LOGIC;
-            JA      : inout STD_LOGIC_VECTOR(7 downto 0);
-            JB      : inout STD_LOGIC_VECTOR(7 downto 0);
-            disp    : out STD_LOGIC_VECTOR(11 downto 0);
-            led     : out STD_LOGIC_VECTOR(15 downto 0)
+    Port (  clk     : in std_logic;
+            sw      : in std_logic_vector(15 downto 0);
+            btn     : in std_logic_vector(4 downto 0);
+            --rst     : in std_logic;
+            JA      : inout std_logic_vector(7 downto 0);
+            JB      : inout std_logic_vector(7 downto 0);
+            disp    : out std_logic_vector(11 downto 0);
+            led     : out std_logic_vector(15 downto 0)
             );
            
 end vending_machine;
 
 architecture Behavioral of vending_machine is
-    type STATE_TYPE is (idle, program);
-    signal state    : STATE_TYPE;
-    signal btno     : STD_LOGIC_VECTOR(4 downto 0);
-    signal ledi     : STD_LOGIC_VECTOR(15 downto 0);
-    signal swi      : STD_LOGIC_VECTOR(15 downto 0);
-    signal sevsego  : STD_LOGIC_VECTOR(11 downto 0);
+    type STATE_TYPE is (idle, program, insertingNickel, insertingDime, insertingQuarter, vend, returnChange);
+    signal state        : STATE_TYPE;
+    signal nickel       : std_logic;
+    signal dime         : std_logic;
+    signal quarter      : std_logic;
+    signal submit       : std_logic;
+    signal reset        : std_logic;
+    signal total        : unsigned(13 downto 0) := (others => '0'); --Non-bcd representation -- only 14 bits are needed to hold 9999
+    signal ledo         : std_logic_vector(15 downto 0) := (others => '0');
+    signal swi          : std_logic_vector(15 downto 0);
+    --signal sevsego  : std_logic_vector(11 downto 0);
+    signal displayVal   : std_logic_vector(15 downto 0) := (others => '0');
+    signal dec          : std_logic_vector(3 downto 0) := (others => '0');
+
+    
+    function binary_to_bcd( input : in unsigned(13 downto 0)) return std_logic_vector is
+        variable bcd : unsigned(15 downto 0) := (others => '0');
+        variable bin : unsigned(13 downto 0) := input;
+        variable count : integer := 13;
+        variable digit : integer;
+        variable index_high : integer;
+        variable index_low : integer;
+        begin
+            while (count >= 0) loop
+                digit := 0;
+                while (digit < 4) loop
+                    index_high := (digit*4) + 3;
+                    index_low := digit*4;
+                    if (bcd(index_high downto index_low) > "0100") then
+                        bcd(index_high downto index_low) := bcd(index_high downto index_low) + "0011";
+                    end if;
+                    digit := digit + 1;
+                end loop;
+                bcd := shift_left(bcd, 1);
+                bcd(0) := bin(count);
+                count := count - 1;
+            end loop;
+            
+        
+        return std_logic_vector(bcd);
+    end function;
+    
+    function addMoney(value : in unsigned(13 downto 0); add : in unsigned(13 downto 0)) return unsigned is
+        variable compVal : unsigned(15 downto 0) := "00" & value;
+        begin
+            compVal := compVal + add;
+            if (compVal > "10011100001111") then --99
+                compVal := "0010011100001111";
+            elsif (compVal < value) then -- If this happened, then overflow occured
+                compVal := "0010011100001111";
+            end if; 
+            return compVal(13 downto 0);
+    end function;
+    
 begin 
-    btnd: entity work.btn_decoder port map(clk=>clk, btn=>btn, output=>btno);
-    lede: entity work.led_encoder port map(clk=>clk, input=>ledi, led=>led);
-    swd: entity work.sw_decoder port map(clk=>clk, sw=>sw, output=>swi);
-    sevsege: entity work.sevseg_encoder port map(clk=>clk, input=>sevsego, sevseg=>disp);
-    process (clk, btno(4)) -- Could need to be just btn, not include it, or seperate it from the btn vector
-    begin
-        if (btno(4) = '1') then
+    btnd    : entity work.btn_decoder port map(clk=>clk, btn=>btn, nickel=>nickel, dime=>dime, quarter=>quarter, submit=>submit, reset=>reset);
+    lede    : entity work.led_encoder port map(clk=>clk, input=>ledo, led=>led);
+    swd     : entity work.sw_decoder port map(clk=>clk, sw=>sw, output=>swi);
+    sevsege : entity work.sevseg_encoder port map(clk=>clk, rst=>reset, input=>displayVal, dec=>dec, sevseg=>disp);
+    process (clk, reset) -- Could need to be just btn, not include it, or seperate it from the btn vector
+    begin    
+        if (reset = '1') then
             -- Reset
 --            JA <= (others => '0');
 --            JB <= (others => '0');
-            sevsego <= (others => '0');
-            ledi <= (others => '0');
+            --sevsego <= (others => '0');
+            ledo <= (others => '0');
+            displayVal <= (others => '0');
+            dec <= (others => '0');
+            total <= (others => '0');
             state <= idle;
         elsif (rising_edge(clk)) then
             case state is
@@ -71,16 +124,39 @@ begin
                     if (swi(15) = '1') then
                         state <= program;
                     end if;
-                    ledi <= "0000000000000000";
-                    --ledi(14 downto 0) <= swi(14 downto 0);
+                    if (nickel = '1') then
+                        state <= insertingNickel;
+                    elsif (dime = '1') then
+                        state <= insertingDime;
+                    elsif (quarter = '1') then
+                        state <= insertingQuarter;
+                    elsif (submit = '1') then
+                        state <= vend;
+                    end if;
+                    displayVal <= binary_to_bcd(total);
+                    dec <= "0100";
                 when program =>
                     if (swi(15) = '0') then
                         state <= idle;
                     end if;
-                    ledi <= "1111111111111111";
+                when insertingNickel =>
+                    total <= addMoney(total,"0101");
+                    state <= idle;
+                when insertingDime =>
+                    total <= addMoney(total,"1010");
+                    state <= idle;
+                when insertingQuarter =>
+                    total <= addMoney(total,"11001");
+                    state <= idle;
+                when vend =>
+                    total <= addMoney(total,"1100100");
+                    state <= idle;
                 when others =>
                     state <= idle;
             end case;
         end if;
     end process;
+    
 end Behavioral;
+
+ 

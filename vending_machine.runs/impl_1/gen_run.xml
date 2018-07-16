@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1531447887">
+  <File Type="PWROPT-DCP" Name="vending_machine_pwropt.dcp"/>
+  <File Type="ROUTE-PWR" Name="vending_machine_power_routed.rpt"/>
+  <File Type="PA-TCL" Name="vending_machine.tcl"/>
+  <File Type="ROUTE-PWR-SUM" Name="vending_machine_power_summary_routed.pb"/>
+  <File Type="REPORTS-TCL" Name="vending_machine_reports.tcl"/>
+  <File Type="BG-DRC" Name="vending_machine.drc"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="vending_machine_methodology_drc_opted.rpt"/>
+  <File Type="INIT-TIMING" Name="vending_machine_timing_summary_init.rpt"/>
+  <File Type="OPT-HWDEF" Name="vending_machine.hwdef"/>
+  <File Type="OPT-DCP" Name="vending_machine_opt.dcp"/>
+  <File Type="OPT-DRC" Name="vending_machine_drc_opted.rpt"/>
+  <File Type="OPT-TIMING" Name="vending_machine_timing_summary_opted.rpt"/>
+  <File Type="PWROPT-DRC" Name="vending_machine_drc_pwropted.rpt"/>
+  <File Type="PWROPT-TIMING" Name="vending_machine_timing_summary_pwropted.rpt"/>
+  <File Type="PLACE-DCP" Name="vending_machine_placed.dcp"/>
+  <File Type="PLACE-IO" Name="vending_machine_io_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="vending_machine_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL" Name="vending_machine_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="vending_machine_utilization_placed.pb"/>
+  <File Type="PLACE-CTRL" Name="vending_machine_control_sets_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="vending_machine_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="vending_machine_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PLACE-TIMING" Name="vending_machine_timing_summary_placed.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="vending_machine_postplace_pwropt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="vending_machine_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="vending_machine_physopt.dcp"/>
+  <File Type="PHYSOPT-DRC" Name="vending_machine_drc_physopted.rpt"/>
+  <File Type="BG-BIT" Name="vending_machine.bit"/>
+  <File Type="PHYSOPT-TIMING" Name="vending_machine_timing_summary_physopted.rpt"/>
+  <File Type="ROUTE-ERROR-DCP" Name="vending_machine_routed_error.dcp"/>
+  <File Type="ROUTE-DCP" Name="vending_machine_routed.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="vending_machine_routed_bb.dcp"/>
+  <File Type="ROUTE-DRC" Name="vending_machine_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="vending_machine_drc_routed.pb"/>
+  <File Type="BITSTR-MSK" Name="vending_machine.msk"/>
+  <File Type="ROUTE-DRC-RPX" Name="vending_machine_drc_routed.rpx"/>
+  <File Type="BG-BGN" Name="vending_machine.bgn"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="vending_machine_methodology_drc_routed.rpt"/>
+  <File Type="BITSTR-RBT" Name="vending_machine.rbt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="vending_machine_methodology_drc_routed.rpx"/>
+  <File Type="BG-BIN" Name="vending_machine.bin"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="vending_machine_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-PWR-RPX" Name="vending_machine_power_routed.rpx"/>
+  <File Type="ROUTE-STATUS" Name="vending_machine_route_status.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="vending_machine_route_status.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="vending_machine_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-TIMING-PB" Name="vending_machine_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMING-RPX" Name="vending_machine_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-SIMILARITY" Name="vending_machine_incremental_reuse_routed.rpt"/>
+  <File Type="RDI-RDI" Name="vending_machine.vdi"/>
+  <File Type="ROUTE-CLK" Name="vending_machine_clock_utilization_routed.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="vending_machine_postroute_physopt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="vending_machine_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="vending_machine_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="vending_machine_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="vending_machine_timing_summary_postroute_physopted.rpx"/>
+  <File Type="BITSTR-NKY" Name="vending_machine.nky"/>
+  <File Type="BITSTR-BMM" Name="vending_machine_bd.bmm"/>
+  <File Type="BITSTR-MMI" Name="vending_machine.mmi"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="vending_machine.ltx"/>
+  <File Type="BITSTR-SYSDEF" Name="vending_machine.sysdef"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/new/ascii_decoder.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/debouncer.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/btn_decoder.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/led_encoder.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/sevseg_encoder.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/sw_decoder.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/imports/vending_machine/vending_machine.vhd">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/vending_machine.vhd"/>
+        <Attr Name="ImportTime" Val="1525716767"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/kypd_decoder.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/oled_encoder.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="vending_machine"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PSRCDIR/constrs_1/imports/vending_machine/vending_machine.xdc">
+      <FileInfo>
+        <Attr Name="ImportPath" Val="$PPRDIR/vending_machine.xdc"/>
+        <Attr Name="ImportTime" Val="1525625544"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2017"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+</GenRun>
