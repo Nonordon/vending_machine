@@ -35,7 +35,7 @@ entity debouncer is
     Generic (delay : integer := 5000000);
     Port ( clk : in std_logic;
            input : in std_logic;
-           output : out std_logic);
+           output : out std_logic;
 end debouncer;
 
 architecture Behavioral of debouncer is

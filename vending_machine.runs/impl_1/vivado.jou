@@ -2,8 +2,8 @@
 # Vivado v2017.4 (64-bit)
 # SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
 # IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
-# Start of session at: Thu Jul 12 20:12:47 2018
-# Process ID: 13548
+# Start of session at: Mon Jul 16 21:06:52 2018
+# Process ID: 14056
 # Current directory: C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.runs/impl_1
 # Command line: vivado.exe -log vending_machine.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source vending_machine.tcl -notrace
 # Log file: C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.runs/impl_1/vending_machine.vdi

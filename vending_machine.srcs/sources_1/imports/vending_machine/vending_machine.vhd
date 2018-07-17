@@ -47,11 +47,11 @@ entity vending_machine is
 end vending_machine;
 
 architecture Behavioral of vending_machine is
-    type STATE_TYPE is (idle, program, insertingNickel, insertingDime, insertingQuarter, vend, returnChange);
+    type STATE_TYPE is (idle, program, insertingNickel, insertingQuarter, insertingDollar, vend, returnChange);
     signal state        : STATE_TYPE;
     signal nickel       : std_logic;
-    signal dime         : std_logic;
     signal quarter      : std_logic;
+    signal dollar       : std_logic;
     signal submit       : std_logic;
     signal reset        : std_logic;
     signal total        : unsigned(13 downto 0) := (others => '0'); --Non-bcd representation -- only 14 bits are needed to hold 9999
@@ -60,6 +60,9 @@ architecture Behavioral of vending_machine is
     --signal sevsego  : std_logic_vector(11 downto 0);
     signal displayVal   : std_logic_vector(15 downto 0) := (others => '0');
     signal dec          : std_logic_vector(3 downto 0) := (others => '0');
+    signal keypad       : std_logic_vector(4 downto 0) := "11111";
+    signal row          : std_logic_vector(4 downto 0) := "11111";
+    signal col          : std_logic_vector(4 downto 0) := "11111";
 
     
     function binary_to_bcd( input : in unsigned(13 downto 0)) return std_logic_vector is
@@ -84,8 +87,6 @@ architecture Behavioral of vending_machine is
                 bcd(0) := bin(count);
                 count := count - 1;
             end loop;
-            
-        
         return std_logic_vector(bcd);
     end function;
     
@@ -93,8 +94,8 @@ architecture Behavioral of vending_machine is
         variable compVal : unsigned(15 downto 0) := "00" & value;
         begin
             compVal := compVal + add;
-            if (compVal > "10011100001111") then --99
-                compVal := "0010011100001111";
+            if (compVal > "10011100001111") then 
+                compVal := "0010011100001111";  --99
             elsif (compVal < value) then -- If this happened, then overflow occured
                 compVal := "0010011100001111";
             end if; 
@@ -102,10 +103,11 @@ architecture Behavioral of vending_machine is
     end function;
     
 begin 
-    btnd    : entity work.btn_decoder port map(clk=>clk, btn=>btn, nickel=>nickel, dime=>dime, quarter=>quarter, submit=>submit, reset=>reset);
+    btnd    : entity work.btn_decoder port map(clk=>clk, btn=>btn, nickel=>nickel, quarter=>quarter, dollar=>dollar, submit=>submit, reset=>reset);
     lede    : entity work.led_encoder port map(clk=>clk, input=>ledo, led=>led);
     swd     : entity work.sw_decoder port map(clk=>clk, sw=>sw, output=>swi);
     sevsege : entity work.sevseg_encoder port map(clk=>clk, rst=>reset, input=>displayVal, dec=>dec, sevseg=>disp);
+    kypdd   : entity work.kypd_decoder port map(clk=>clk, input=>JA, output=>keypad);
     process (clk, reset) -- Could need to be just btn, not include it, or seperate it from the btn vector
     begin    
         if (reset = '1') then
@@ -126,15 +128,30 @@ begin
                     end if;
                     if (nickel = '1') then
                         state <= insertingNickel;
-                    elsif (dime = '1') then
-                        state <= insertingDime;
                     elsif (quarter = '1') then
                         state <= insertingQuarter;
+                    elsif (dollar = '1') then
+                        state <= insertingDollar;
                     elsif (submit = '1') then
                         state <= vend;
                     end if;
-                    displayVal <= binary_to_bcd(total);
-                    dec <= "0100";
+                    if (keypad /= "11111") then
+                        if (row = "11111") then
+                            row <= keypad;
+                        elsif (col = "11111") then
+                            col <= keypad;
+                        else
+                            row <= "11111";
+                            col <= "11111";
+                        end if;
+                    end if;
+                    --displayVal <= binary_to_bcd(total);
+                    --dec <= "0100";
+                    --if (row /= "11111") then
+                        displayVal <= "0000" & row(3 downto 0) & "0000" & col(3 downto 0);
+                    --end if;
+                    --displayVal <= "000000000000" & keypad(3 downto 0);
+                    dec <= "0000";
                 when program =>
                     if (swi(15) = '0') then
                         state <= idle;
@@ -142,14 +159,13 @@ begin
                 when insertingNickel =>
                     total <= addMoney(total,"0101");
                     state <= idle;
-                when insertingDime =>
-                    total <= addMoney(total,"1010");
-                    state <= idle;
                 when insertingQuarter =>
                     total <= addMoney(total,"11001");
                     state <= idle;
-                when vend =>
+                when insertingDollar =>
                     total <= addMoney(total,"1100100");
+                    state <= idle;
+                when vend =>
                     state <= idle;
                 when others =>
                     state <= idle;

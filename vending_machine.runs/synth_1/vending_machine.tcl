@@ -33,6 +33,7 @@ read_vhdl -library xil_defaultlib {
   C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/new/ascii_decoder.vhd
   C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/new/debouncer.vhd
   C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/new/btn_decoder.vhd
+  C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/new/kypd_decoder.vhd
   C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/new/led_encoder.vhd
   C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/new/sevseg_encoder.vhd
   C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/new/sw_decoder.vhd

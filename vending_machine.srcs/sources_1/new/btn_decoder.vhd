@@ -36,8 +36,8 @@ entity btn_decoder is
             btn     : in std_logic_vector(4 downto 0);
             reset   : out std_logic;
             nickel  : out std_logic;
-            dime    : out std_logic;
             quarter : out std_logic;
+            dollar  : out std_logic;
             submit  : out std_logic
             );
 end btn_decoder;
@@ -46,8 +46,8 @@ architecture Behavioral of btn_decoder is
 
 begin
     debouncer0    : entity work.debouncer port map(clk=>clk, input=>btn(0), output=>nickel);
-    debouncer1    : entity work.debouncer port map(clk=>clk, input=>btn(1), output=>dime);
-    debouncer2    : entity work.debouncer port map(clk=>clk, input=>btn(2), output=>quarter);
+    debouncer1    : entity work.debouncer port map(clk=>clk, input=>btn(1), output=>quarter);
+    debouncer2    : entity work.debouncer port map(clk=>clk, input=>btn(2), output=>dollar);
     debouncer3    : entity work.debouncer port map(clk=>clk, input=>btn(3), output=>submit);
     --debouncer4    : entity work.debouncer port map(clk=>clk, input=>btn(4), output=>reset);
 

@@ -14,9 +14,9 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 12904 
+INFO: Helper process launched with PID 4980 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 401.422 ; gain = 96.871
+Starting RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 401.305 ; gain = 96.664
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'vending_machine' [C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/imports/vending_machine/vending_machine.vhd:49]
 INFO: [Synth 8-638] synthesizing module 'btn_decoder' [C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/new/btn_decoder.vhd:45]
@@ -34,15 +34,11 @@ INFO: [Synth 8-638] synthesizing module 'ascii_decoder' [C:/Users/campa/gitbash/
 INFO: [Synth 8-226] default block is never used [C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/new/ascii_decoder.vhd:46]
 INFO: [Synth 8-256] done synthesizing module 'ascii_decoder' (5#1) [C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/new/ascii_decoder.vhd:40]
 INFO: [Synth 8-256] done synthesizing module 'sevseg_encoder' (6#1) [C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/new/sevseg_encoder.vhd:44]
-INFO: [Synth 8-256] done synthesizing module 'vending_machine' (7#1) [C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/imports/vending_machine/vending_machine.vhd:49]
-WARNING: [Synth 8-3331] design vending_machine has unconnected port JA[7]
-WARNING: [Synth 8-3331] design vending_machine has unconnected port JA[6]
-WARNING: [Synth 8-3331] design vending_machine has unconnected port JA[5]
-WARNING: [Synth 8-3331] design vending_machine has unconnected port JA[4]
-WARNING: [Synth 8-3331] design vending_machine has unconnected port JA[3]
-WARNING: [Synth 8-3331] design vending_machine has unconnected port JA[2]
-WARNING: [Synth 8-3331] design vending_machine has unconnected port JA[1]
-WARNING: [Synth 8-3331] design vending_machine has unconnected port JA[0]
+INFO: [Synth 8-638] synthesizing module 'kypd_decoder' [C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/new/kypd_decoder.vhd:41]
+INFO: [Synth 8-256] done synthesizing module 'kypd_decoder' (7#1) [C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/new/kypd_decoder.vhd:41]
+WARNING: [Synth 8-6014] Unused sequential element total_reg was removed.  [C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/imports/vending_machine/vending_machine.vhd:121]
+INFO: [Synth 8-256] done synthesizing module 'vending_machine' (8#1) [C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/imports/vending_machine/vending_machine.vhd:49]
+WARNING: [Synth 8-3331] design kypd_decoder has unconnected port input[4]
 WARNING: [Synth 8-3331] design vending_machine has unconnected port JB[7]
 WARNING: [Synth 8-3331] design vending_machine has unconnected port JB[6]
 WARNING: [Synth 8-3331] design vending_machine has unconnected port JB[5]
@@ -52,7 +48,7 @@ WARNING: [Synth 8-3331] design vending_machine has unconnected port JB[2]
 WARNING: [Synth 8-3331] design vending_machine has unconnected port JB[1]
 WARNING: [Synth 8-3331] design vending_machine has unconnected port JB[0]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 453.539 ; gain = 148.988
+Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 454.340 ; gain = 149.699
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -62,7 +58,7 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 453.539 ; gain = 148.988
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 454.340 ; gain = 149.699
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -78,39 +74,37 @@ Completed Processing XDC Constraints
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 791.234 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 789.199 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 791.234 ; gain = 486.684
+Finished Constraint Validation : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 789.199 ; gain = 484.559
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 791.234 ; gain = 486.684
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 789.199 ; gain = 484.559
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 791.234 ; gain = 486.684
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 789.199 ; gain = 484.559
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-6014] Unused sequential element counter_reg was removed.  [C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/new/debouncer.vhd:54]
 WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/new/sevseg_encoder.vhd:61]
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'vending_machine'
 INFO: [Synth 8-5544] ROM "displayVal" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "total" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "displayVal" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "total" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
                     idle |                              000 |                              000
          insertingnickel |                              001 |                              010
-           insertingdime |                              010 |                              011
-        insertingquarter |                              011 |                              100
+        insertingquarter |                              010 |                              011
+         insertingdollar |                              011 |                              100
                     vend |                              100 |                              101
                  program |                              101 |                              001
                   iSTATE |                              110 |                              111
@@ -118,7 +112,7 @@ INFO: [Synth 8-5544] ROM "state" won't be mapped to Block RAM because address si
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'vending_machine'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 791.234 ; gain = 486.684
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 789.199 ; gain = 484.559
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -130,26 +124,22 @@ Report RTL Partitions:
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
-+---Adders : 
-	   2 Input     15 Bit       Adders := 4     
-	   2 Input      4 Bit       Adders := 33    
-	   2 Input      3 Bit       Adders := 1     
 +---Registers : 
 	               16 Bit    Registers := 3     
-	               14 Bit    Registers := 1     
 	               12 Bit    Registers := 1     
+	                5 Bit    Registers := 3     
 	                4 Bit    Registers := 1     
 	                2 Bit    Registers := 1     
 	                1 Bit    Registers := 16    
 +---Muxes : 
-	   2 Input     14 Bit        Muxes := 8     
-	   7 Input     14 Bit        Muxes := 1     
 	   4 Input     12 Bit        Muxes := 1     
-	   2 Input      4 Bit        Muxes := 26    
+	   2 Input      5 Bit        Muxes := 5     
+	   4 Input      4 Bit        Muxes := 3     
 	  12 Input      3 Bit        Muxes := 1     
 	   4 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 7     
 	   5 Input      1 Bit        Muxes := 1     
-	   7 Input      1 Bit        Muxes := 3     
+	   7 Input      1 Bit        Muxes := 4     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -159,21 +149,16 @@ Start RTL Hierarchical Component Statistics
 Hierarchical RTL Component report 
 Module vending_machine 
 Detailed RTL Component Info : 
-+---Adders : 
-	   2 Input     15 Bit       Adders := 4     
-	   2 Input      4 Bit       Adders := 33    
-	   2 Input      3 Bit       Adders := 1     
 +---Registers : 
 	               16 Bit    Registers := 1     
-	               14 Bit    Registers := 1     
+	                5 Bit    Registers := 2     
 	                4 Bit    Registers := 1     
 +---Muxes : 
-	   2 Input     14 Bit        Muxes := 8     
-	   7 Input     14 Bit        Muxes := 1     
-	   2 Input      4 Bit        Muxes := 26    
+	   2 Input      5 Bit        Muxes := 2     
 	  12 Input      3 Bit        Muxes := 1     
 	   5 Input      1 Bit        Muxes := 1     
-	   7 Input      1 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 1     
+	   7 Input      1 Bit        Muxes := 4     
 Module debouncer 
 Detailed RTL Component Info : 
 +---Registers : 
@@ -194,6 +179,14 @@ Detailed RTL Component Info :
 +---Muxes : 
 	   4 Input     12 Bit        Muxes := 1     
 	   4 Input      2 Bit        Muxes := 1     
+Module kypd_decoder 
+Detailed RTL Component Info : 
++---Registers : 
+	                5 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      5 Bit        Muxes := 3     
+	   4 Input      4 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 6     
 ---------------------------------------------------------------------------------
 Finished RTL Hierarchical Component Statistics
 ---------------------------------------------------------------------------------
@@ -214,14 +207,6 @@ WARNING: [Synth 8-6014] Unused sequential element btnd/debouncer1/counter_reg wa
 WARNING: [Synth 8-6014] Unused sequential element btnd/debouncer2/counter_reg was removed.  [C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/new/debouncer.vhd:54]
 WARNING: [Synth 8-6014] Unused sequential element btnd/debouncer3/counter_reg was removed.  [C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/new/debouncer.vhd:54]
 WARNING: [Synth 8-6014] Unused sequential element sevsege/count_reg was removed.  [C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.srcs/sources_1/new/sevseg_encoder.vhd:61]
-WARNING: [Synth 8-3331] design vending_machine has unconnected port JA[7]
-WARNING: [Synth 8-3331] design vending_machine has unconnected port JA[6]
-WARNING: [Synth 8-3331] design vending_machine has unconnected port JA[5]
-WARNING: [Synth 8-3331] design vending_machine has unconnected port JA[4]
-WARNING: [Synth 8-3331] design vending_machine has unconnected port JA[3]
-WARNING: [Synth 8-3331] design vending_machine has unconnected port JA[2]
-WARNING: [Synth 8-3331] design vending_machine has unconnected port JA[1]
-WARNING: [Synth 8-3331] design vending_machine has unconnected port JA[0]
 WARNING: [Synth 8-3331] design vending_machine has unconnected port JB[7]
 WARNING: [Synth 8-3331] design vending_machine has unconnected port JB[6]
 WARNING: [Synth 8-3331] design vending_machine has unconnected port JB[5]
@@ -230,8 +215,17 @@ WARNING: [Synth 8-3331] design vending_machine has unconnected port JB[3]
 WARNING: [Synth 8-3331] design vending_machine has unconnected port JB[2]
 WARNING: [Synth 8-3331] design vending_machine has unconnected port JB[1]
 WARNING: [Synth 8-3331] design vending_machine has unconnected port JB[0]
+INFO: [Synth 8-3886] merging instance 'displayVal_reg[12]' (FDCE) to 'dec_reg[0]'
+INFO: [Synth 8-3886] merging instance 'displayVal_reg[13]' (FDCE) to 'dec_reg[0]'
+INFO: [Synth 8-3886] merging instance 'displayVal_reg[14]' (FDCE) to 'dec_reg[0]'
+INFO: [Synth 8-3886] merging instance 'displayVal_reg[15]' (FDCE) to 'dec_reg[0]'
+INFO: [Synth 8-3886] merging instance 'displayVal_reg[4]' (FDCE) to 'dec_reg[0]'
+INFO: [Synth 8-3886] merging instance 'displayVal_reg[5]' (FDCE) to 'dec_reg[0]'
+INFO: [Synth 8-3886] merging instance 'displayVal_reg[6]' (FDCE) to 'dec_reg[0]'
+INFO: [Synth 8-3886] merging instance 'displayVal_reg[7]' (FDCE) to 'dec_reg[0]'
 INFO: [Synth 8-3886] merging instance 'dec_reg[3]' (FDCE) to 'dec_reg[0]'
 INFO: [Synth 8-3886] merging instance 'dec_reg[1]' (FDCE) to 'dec_reg[0]'
+INFO: [Synth 8-3886] merging instance 'dec_reg[2]' (FDCE) to 'dec_reg[0]'
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\dec_reg[0] )
 INFO: [Synth 8-3886] merging instance 'lede/led_reg[0]' (FD) to 'lede/led_reg[1]'
 INFO: [Synth 8-3886] merging instance 'lede/led_reg[1]' (FD) to 'lede/led_reg[2]'
@@ -265,9 +259,10 @@ WARNING: [Synth 8-3332] Sequential element (swd/output_reg[3]) is unused and wil
 WARNING: [Synth 8-3332] Sequential element (swd/output_reg[2]) is unused and will be removed from module vending_machine.
 WARNING: [Synth 8-3332] Sequential element (swd/output_reg[1]) is unused and will be removed from module vending_machine.
 WARNING: [Synth 8-3332] Sequential element (swd/output_reg[0]) is unused and will be removed from module vending_machine.
+WARNING: [Synth 8-3332] Sequential element (sevsege/sevseg_reg[7]) is unused and will be removed from module vending_machine.
 WARNING: [Synth 8-3332] Sequential element (dec_reg[0]) is unused and will be removed from module vending_machine.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 791.234 ; gain = 486.684
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:32 . Memory (MB): peak = 789.199 ; gain = 484.559
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -279,13 +274,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:51 ; elapsed = 00:00:52 . Memory (MB): peak = 817.949 ; gain = 513.398
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:43 ; elapsed = 00:00:45 . Memory (MB): peak = 789.199 ; gain = 484.559
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:53 ; elapsed = 00:00:55 . Memory (MB): peak = 868.156 ; gain = 563.605
+Finished Timing Optimization : Time (s): cpu = 00:00:43 ; elapsed = 00:00:45 . Memory (MB): peak = 805.340 ; gain = 500.699
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -297,7 +292,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:54 ; elapsed = 00:00:56 . Memory (MB): peak = 877.691 ; gain = 573.141
+Finished Technology Mapping : Time (s): cpu = 00:00:44 ; elapsed = 00:00:46 . Memory (MB): peak = 806.105 ; gain = 501.465
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -321,7 +316,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:56 ; elapsed = 00:00:57 . Memory (MB): peak = 877.691 ; gain = 573.141
+Finished IO Insertion : Time (s): cpu = 00:00:45 ; elapsed = 00:00:47 . Memory (MB): peak = 806.105 ; gain = 501.465
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -334,7 +329,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:56 ; elapsed = 00:00:57 . Memory (MB): peak = 877.691 ; gain = 573.141
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:45 ; elapsed = 00:00:47 . Memory (MB): peak = 806.105 ; gain = 501.465
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -346,25 +341,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:56 ; elapsed = 00:00:57 . Memory (MB): peak = 877.691 ; gain = 573.141
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:45 ; elapsed = 00:00:47 . Memory (MB): peak = 806.105 ; gain = 501.465
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:56 ; elapsed = 00:00:57 . Memory (MB): peak = 877.691 ; gain = 573.141
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:45 ; elapsed = 00:00:47 . Memory (MB): peak = 806.105 ; gain = 501.465
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:56 ; elapsed = 00:00:57 . Memory (MB): peak = 877.691 ; gain = 573.141
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:45 ; elapsed = 00:00:47 . Memory (MB): peak = 806.105 ; gain = 501.465
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:56 ; elapsed = 00:00:57 . Memory (MB): peak = 877.691 ; gain = 573.141
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:45 ; elapsed = 00:00:47 . Memory (MB): peak = 806.105 ; gain = 501.465
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -381,43 +376,43 @@ Report Cell Usage:
 |      |Cell   |Count |
 +------+-------+------+
 |1     |BUFG   |     1|
-|2     |CARRY4 |    74|
-|3     |LUT1   |    26|
-|4     |LUT2   |    94|
-|5     |LUT3   |    44|
-|6     |LUT4   |    83|
-|7     |LUT5   |    19|
-|8     |LUT6   |   133|
-|9     |MUXF7  |    35|
-|10    |MUXF8  |    14|
-|11    |FDCE   |    45|
-|12    |FDPE   |    17|
-|13    |FDRE   |   109|
-|14    |IBUF   |     7|
-|15    |OBUF   |    28|
+|2     |CARRY4 |    50|
+|3     |LUT1   |    14|
+|4     |LUT2   |    90|
+|5     |LUT3   |    36|
+|6     |LUT4   |    15|
+|7     |LUT5   |    22|
+|8     |LUT6   |    29|
+|9     |FDCE   |    22|
+|10    |FDPE   |    16|
+|11    |FDRE   |   114|
+|12    |FDSE   |    10|
+|13    |IBUF   |    14|
+|14    |OBUF   |    28|
 +------+-------+------+
 
 Report Instance Areas: 
 +------+---------------+---------------+------+
 |      |Instance       |Module         |Cells |
 +------+---------------+---------------+------+
-|1     |top            |               |   729|
-|2     |  btnd         |btn_decoder    |   292|
+|1     |top            |               |   461|
+|2     |  btnd         |btn_decoder    |   295|
 |3     |    debouncer0 |debouncer      |    76|
-|4     |    debouncer1 |debouncer_0    |    74|
-|5     |    debouncer2 |debouncer_1    |    71|
-|6     |    debouncer3 |debouncer_2    |    71|
-|7     |  sevsege      |sevseg_encoder |   100|
-|8     |  swd          |sw_decoder     |     2|
+|4     |    debouncer1 |debouncer_0    |    72|
+|5     |    debouncer2 |debouncer_1    |    73|
+|6     |    debouncer3 |debouncer_2    |    74|
+|7     |  kypdd        |kypd_decoder   |    17|
+|8     |  sevsege      |sevseg_encoder |    80|
+|9     |  swd          |sw_decoder     |     2|
 +------+---------------+---------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:56 ; elapsed = 00:00:57 . Memory (MB): peak = 877.691 ; gain = 573.141
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:45 ; elapsed = 00:00:47 . Memory (MB): peak = 806.105 ; gain = 501.465
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 40 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:36 ; elapsed = 00:00:48 . Memory (MB): peak = 877.691 ; gain = 235.445
-Synthesis Optimization Complete : Time (s): cpu = 00:00:56 ; elapsed = 00:00:57 . Memory (MB): peak = 877.691 ; gain = 573.141
+Synthesis finished with 0 errors, 0 critical warnings and 33 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:26 ; elapsed = 00:00:38 . Memory (MB): peak = 806.105 ; gain = 166.605
+Synthesis Optimization Complete : Time (s): cpu = 00:00:45 ; elapsed = 00:00:47 . Memory (MB): peak = 806.105 ; gain = 501.465
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 130 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 64 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
@@ -425,10 +420,10 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
-54 Infos, 56 Warnings, 0 Critical Warnings and 0 Errors encountered.
+63 Infos, 43 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:59 ; elapsed = 00:01:02 . Memory (MB): peak = 877.691 ; gain = 585.258
+synth_design: Time (s): cpu = 00:00:47 ; elapsed = 00:00:51 . Memory (MB): peak = 806.105 ; gain = 513.633
 INFO: [Common 17-1381] The checkpoint 'C:/Users/campa/gitbash/basys3/vending_machine/vending_machine.runs/synth_1/vending_machine.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file vending_machine_utilization_synth.rpt -pb vending_machine_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.038 . Memory (MB): peak = 877.691 ; gain = 0.000
-INFO: [Common 17-206] Exiting Vivado at Thu Jul 12 20:12:41 2018...
+report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.073 . Memory (MB): peak = 806.105 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Mon Jul 16 21:06:45 2018...
