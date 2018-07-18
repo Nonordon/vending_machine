@@ -40,9 +40,10 @@ architecture Behavioral of vending_machine_tb is
         port (  clk     : in STD_LOGIC;
                 sw      : in STD_LOGIC_VECTOR(15 downto 0);
                 btn     : in STD_LOGIC_VECTOR(4 downto 0);
-                JA      : inout STD_LOGIC_VECTOR(7 downto 0);
+                JA      : in STD_LOGIC_VECTOR(7 downto 0);
                 JB      : inout STD_LOGIC_VECTOR(7 downto 0);
                 disp    : out STD_LOGIC_VECTOR(11 downto 0);
+                keys    : out STD_LOGIC_VECTOR(4 downto 0);
                 led     : out STD_LOGIC_VECTOR(15 downto 0)
             );
     end component;
@@ -54,23 +55,27 @@ architecture Behavioral of vending_machine_tb is
     signal inJB     : STD_LOGIC_VECTOR(7 downto 0);
     signal outdisp  : STD_LOGIC_VECTOR(11 downto 0);
     signal outled   : STD_LOGIC_VECTOR(15 downto 0);
+    signal outkey   : STD_LOGIC_VECTOR(4 downto 0);
     
 begin
-    UUT : vending_machine port map (clk=>inclk, sw=>insw, btn=>inbtn, JA=>inJA, JB=>inJB, disp=>outdisp, led=>outled);
+    UUT : vending_machine port map (clk=>inclk, sw=>insw, btn=>inbtn, JA=>inJA, JB=>inJB, disp=>outdisp, keys=>outkey, led=>outled);
 
     stim_proc : process
     begin
         wait for 3 ns;
         inbtn <= "10000";
         insw <= "0000000000000000";
-        inJA <= "00000000";
+        inJA <= "11111111";
         inJB <= "00000000";
         wait for 100 ns;
         inbtn <= "00000";
-        wait for 1000 ns;
-        insw <= "1000000000000000";
-        wait for 1000 ns;
-        insw <= "0000000000000000";
+        inJA <= "01111110";
+        wait for 100 ns;
+        inJA <= "10111101";
+        wait for 100 ns;
+        inJA <= "11011011";
+        wait for 100 ns;
+        inJA <= "11100111";
         wait;
     end process;
 

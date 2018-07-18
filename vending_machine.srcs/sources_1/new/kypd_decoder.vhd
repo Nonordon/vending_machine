@@ -47,11 +47,15 @@ architecture Behavioral of kypd_decoder is
 -- input(5) = Row3
 -- input(6) = Row2
 -- input(7) = Row1
+
+    signal temp : std_logic_vector(7 downto 0);
+
 begin
+    --debouncer : entity work.kypd_debouncer port map(clk=>clk, input=>input, output=>temp);
     process(clk)
     begin
         if (rising_edge(clk)) then
-            if (input(7) = '1') then
+            if (input(7) = '0') then
                 if (input(3) = '0') then
                     output <= "00001";           -- 1
                 elsif (input(2) = '0') then
@@ -61,7 +65,7 @@ begin
                 elsif (input(0) = '0') then
                     output <= "01010";           -- a
                 end if;
-            elsif (input(6) = '1') then
+            elsif (input(6) = '0') then
                 if (input(3) = '0') then
                     output <= "00100";           -- 4 
                 elsif (input(2) = '0') then
@@ -71,7 +75,7 @@ begin
                 elsif (input(0) = '0') then
                     output <= "01011";           -- b
                 end if;
-            elsif (input(5) = '1') then
+            elsif (input(5) = '0') then
                 if (input(3) = '0') then
                     output <= "00111";           -- 7 
                 elsif (input(2) = '0') then
@@ -81,7 +85,7 @@ begin
                 elsif (input(0) = '0') then
                     output <= "01100";           -- c
                 end if;
-            elsif (input(5) = '1') then
+            elsif (input(4) = '0') then
                 if (input(3) = '0') then
                     output <= "00000";           -- 0 
                 elsif (input(2) = '0') then

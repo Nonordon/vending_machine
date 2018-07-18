@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
-| Date             : Mon Jul 16 21:08:14 2018
+| Date             : Wed Jul 18 16:40:31 2018
 | Host             : nonordon-pc running 64-bit major release  (build 9200)
 | Command          : report_power -file vending_machine_power_routed.rpt -pb vending_machine_power_summary_routed.pb -rpx vending_machine_power_routed.rpx
 | Design           : vending_machine
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.076        |
+| Total On-Chip Power (W)  | 0.083        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.005        |
+| Dynamic (W)              | 0.012        |
 | Device Static (W)        | 0.072        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 84.6         |
@@ -53,15 +53,15 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.002 |        3 |       --- |             --- |
-| Slice Logic    |    <0.001 |      433 |       --- |             --- |
-|   LUT as Logic |    <0.001 |      177 |     20800 |            0.85 |
+| Slice Logic    |    <0.001 |      471 |       --- |             --- |
+|   LUT as Logic |    <0.001 |      186 |     20800 |            0.89 |
 |   CARRY4       |    <0.001 |       50 |      8150 |            0.61 |
-|   Register     |    <0.001 |      162 |     41600 |            0.39 |
-|   Others       |     0.000 |       15 |       --- |             --- |
-| Signals        |    <0.001 |      287 |       --- |             --- |
-| I/O            |     0.002 |       42 |       106 |           39.62 |
+|   Register     |    <0.001 |      188 |     41600 |            0.45 |
+|   Others       |     0.000 |       17 |       --- |             --- |
+| Signals        |    <0.001 |      318 |       --- |             --- |
+| I/O            |     0.009 |       43 |       106 |           40.57 |
 | Static Power   |     0.072 |          |           |                 |
-| Total          |     0.076 |          |           |                 |
+| Total          |     0.083 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,9 +71,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.012 |       0.002 |      0.010 |
+| Vccint    |       1.000 |     0.012 |       0.003 |      0.010 |
 | Vccaux    |       1.800 |     0.013 |       0.000 |      0.013 |
-| Vcco33    |       3.300 |     0.002 |       0.001 |      0.001 |
+| Vcco33    |       3.300 |     0.004 |       0.003 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
@@ -140,13 +140,14 @@ Table of Contents
 +-----------------+-----------+
 | Name            | Power (W) |
 +-----------------+-----------+
-| vending_machine |     0.005 |
+| vending_machine |     0.012 |
 |   btnd          |     0.001 |
 |     debouncer0  |    <0.001 |
 |     debouncer1  |    <0.001 |
 |     debouncer2  |    <0.001 |
 |     debouncer3  |    <0.001 |
 |   kypdd         |    <0.001 |
+|   lede          |    <0.001 |
 |   sevsege       |    <0.001 |
 |   swd           |    <0.001 |
 +-----------------+-----------+

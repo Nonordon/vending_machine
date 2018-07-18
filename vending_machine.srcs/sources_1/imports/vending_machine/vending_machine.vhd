@@ -38,8 +38,8 @@ entity vending_machine is
             sw      : in std_logic_vector(15 downto 0);
             btn     : in std_logic_vector(4 downto 0);
             --rst     : in std_logic;
-            JA      : inout std_logic_vector(7 downto 0);
-            JB      : inout std_logic_vector(7 downto 0);
+            JA      : in std_logic_vector(7 downto 0);
+            JB      : in std_logic_vector(7 downto 0);
             disp    : out std_logic_vector(11 downto 0);
             led     : out std_logic_vector(15 downto 0)
             );
@@ -107,7 +107,7 @@ begin
     lede    : entity work.led_encoder port map(clk=>clk, input=>ledo, led=>led);
     swd     : entity work.sw_decoder port map(clk=>clk, sw=>sw, output=>swi);
     sevsege : entity work.sevseg_encoder port map(clk=>clk, rst=>reset, input=>displayVal, dec=>dec, sevseg=>disp);
-    kypdd   : entity work.kypd_decoder port map(clk=>clk, input=>JA, output=>keypad);
+    kypdd   : entity work.kypd_decoder port map(clk=>clk, input=>JB, output=>keypad);
     process (clk, reset) -- Could need to be just btn, not include it, or seperate it from the btn vector
     begin    
         if (reset = '1') then
@@ -151,19 +151,21 @@ begin
                         displayVal <= "0000" & row(3 downto 0) & "0000" & col(3 downto 0);
                     --end if;
                     --displayVal <= "000000000000" & keypad(3 downto 0);
+                    --ledo <= row & "0" & keypad(3 downto 0) & "0" * col;
+                    ledo <= keypad & "000" & not JB;
                     dec <= "0000";
                 when program =>
                     if (swi(15) = '0') then
                         state <= idle;
                     end if;
                 when insertingNickel =>
-                    total <= addMoney(total,"0101");
+                    total <= addMoney(total,"0000000000" & "0101");
                     state <= idle;
                 when insertingQuarter =>
-                    total <= addMoney(total,"11001");
+                    total <= addMoney(total,"000000000" & "11001");
                     state <= idle;
                 when insertingDollar =>
-                    total <= addMoney(total,"1100100");
+                    total <= addMoney(total,"0000000" & "1100100");
                     state <= idle;
                 when vend =>
                     state <= idle;

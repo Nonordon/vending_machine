@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1531796743">
+<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1531953312">
   <File Type="PWROPT-DCP" Name="vending_machine_pwropt.dcp"/>
   <File Type="ROUTE-PWR" Name="vending_machine_power_routed.rpt"/>
   <File Type="PA-TCL" Name="vending_machine.tcl"/>
@@ -111,6 +111,13 @@
       <FileInfo>
         <Attr Name="ImportPath" Val="$PPRDIR/vending_machine.vhd"/>
         <Attr Name="ImportTime" Val="1525716767"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/kypd_debouncer.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
