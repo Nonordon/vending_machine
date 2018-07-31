@@ -32,72 +32,100 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity kypd_decoder is
+    Generic ( delay : integer := 10000);
     Port (  clk     : in std_logic;
-            input   : in std_logic_vector(7 downto 0);
-            output  : out std_logic_vector(4 downto 0)
+            row     : in std_logic_vector(3 downto 0);
+            col     : out std_logic_vector(3 downto 0);
+            valid   : out std_logic;
+            output  : out std_logic_vector(3 downto 0)
             );
 end kypd_decoder;
 
 architecture Behavioral of kypd_decoder is
--- input(0) = Col4
--- input(1) = Col3
--- input(2) = Col2
--- input(3) = Col1
--- input(4) = Row4
--- input(5) = Row3
--- input(6) = Row2
--- input(7) = Row1
-
-    signal temp : std_logic_vector(7 downto 0);
+    type STATE_TYPE is (col4, col3, col2, col1);
+    signal state  : STATE_TYPE := col4;
+    signal count : integer range 0 to 4*delay + 8 := 0;
+    signal temp :   std_logic_vector(3 downto 0);
 
 begin
     --debouncer : entity work.kypd_debouncer port map(clk=>clk, input=>input, output=>temp);
+    debouncer0    : entity work.debouncer port map(clk=>clk, valid=>'0', input=>row(0), output=>temp(0));
+    debouncer1    : entity work.debouncer port map(clk=>clk, valid=>'0', input=>row(1), output=>temp(1));
+    debouncer2    : entity work.debouncer port map(clk=>clk, valid=>'0', input=>row(2), output=>temp(2));
+    debouncer3    : entity work.debouncer port map(clk=>clk, valid=>'0', input=>row(3), output=>temp(3));
+    
     process(clk)
     begin
         if (rising_edge(clk)) then
-            if (input(7) = '0') then
-                if (input(3) = '0') then
-                    output <= "00001";           -- 1
-                elsif (input(2) = '0') then
-                    output <= "00010";           -- 2
-                elsif (input(1) = '0') then
-                    output <= "00011";           -- 3
-                elsif (input(0) = '0') then
-                    output <= "01010";           -- a
+            if (count = delay) then
+                col <= "0111";
+            elsif (count = delay + 8) then
+                if (temp(3) = '0') then
+                    output <= "0001";           -- 1
+                    valid <= '1';
+                elsif (temp(2) = '0') then
+                    output <= "0100";           -- 4
+                    valid <= '1';
+                elsif (temp(1) = '0') then
+                    output <= "0111";           -- 7
+                    valid <= '1';
+                elsif (temp(0) = '0') then
+                    output <= "0000";           -- 0
+                    valid <= '1';
                 end if;
-            elsif (input(6) = '0') then
-                if (input(3) = '0') then
-                    output <= "00100";           -- 4 
-                elsif (input(2) = '0') then
-                    output <= "00101";           -- 5
-                elsif (input(1) = '0') then
-                    output <= "00110";           -- 6
-                elsif (input(0) = '0') then
-                    output <= "01011";           -- b
+            elsif (count = 2*delay) then
+                col <= "1011";
+            elsif (count = 2*delay + 8) then
+                if (temp(3) = '0') then
+                    output <= "0010";           -- 2
+                    valid <= '1';
+                elsif (temp(2) = '0') then
+                    output <= "0101";           -- 5
+                    valid <= '1';
+                elsif (temp(1) = '0') then
+                    output <= "1000";           -- 8
+                    valid <= '1';
+                elsif (temp(0) = '0') then
+                    output <= "1111";           -- f
+                    valid <= '1';
                 end if;
-            elsif (input(5) = '0') then
-                if (input(3) = '0') then
-                    output <= "00111";           -- 7 
-                elsif (input(2) = '0') then
-                    output <= "01000";           -- 8
-                elsif (input(1) = '0') then
-                    output <= "01001";           -- 9
-                elsif (input(0) = '0') then
-                    output <= "01100";           -- c
+            elsif (count = 3*delay) then
+                col <= "1101";
+            elsif (count = 3*delay + 8) then
+                if (temp(3) = '0') then
+                    output <= "0011";           -- 3
+                    valid <= '1';
+                elsif (temp(2) = '0') then
+                    output <= "0110";           -- 6
+                    valid <= '1';
+                elsif (temp(1) = '0') then
+                    output <= "1001";           -- 9
+                    valid <= '1';
+                elsif (temp(0) = '0') then
+                    output <= "1110";           -- e
+                    valid <= '1';
                 end if;
-            elsif (input(4) = '0') then
-                if (input(3) = '0') then
-                    output <= "00000";           -- 0 
-                elsif (input(2) = '0') then
-                    output <= "01111";           -- f
-                elsif (input(1) = '0') then
-                    output <= "01110";           -- e
-                elsif (input(0) = '0') then
-                    output <= "01101";           -- d
+            elsif (count = 4*delay) then
+                    col <= "1110";
+            elsif (count = 4*delay + 8) then
+                if (temp(3) = '0') then
+                    output <= "1010";           -- a 
+                    valid <= '1';
+                elsif (temp(2) = '0') then
+                    output <= "1011";           -- b
+                    valid <= '1';
+                elsif (temp(1) = '0') then
+                    output <= "1100";           -- c
+                    valid <= '1';
+                elsif (temp(0) = '0') then
+                    output <= "1101";           -- d
+                    valid <= '1';
                 end if;
-            else 
-                output <= "11111";
+                count <= 0;
+            else
+                valid <= '0';
             end if;
+            count <= count + 1;
         end if;
     end process;
 end Behavioral;

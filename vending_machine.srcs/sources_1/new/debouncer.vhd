@@ -34,9 +34,10 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity debouncer is
     Generic (delay : integer := 5000000
             );
-    Port ( clk : in std_logic;
-           input : in std_logic;
-           output : out std_logic
+    Port (  clk     : in std_logic;
+            valid   : in std_logic;
+            input   : in std_logic;
+            output  : out std_logic
            );
 end debouncer;
 
@@ -53,11 +54,11 @@ begin
             val3 <= val2;
             val2 <= val1;
             val1 <= input;
-            if ((counter = 0) or ((counter < delay) and ((val3 and val2 and val1) = '0'))) then
+            if ((counter = 0) or ((counter < delay) and ((val3 and val2 and val1) = not valid))) then
                 counter <= counter + 1;
-                output <= '0';
-            elsif ((counter = delay) and (val3 and val2 and val1) = '1') then
-                output <= '1';
+                output <= not valid;
+            elsif ((counter = delay) and (val3 and val2 and val1) = valid) then
+                output <= valid;
                 counter <= 0;
             end if;
         end if;

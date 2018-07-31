@@ -45,10 +45,10 @@ end btn_decoder;
 architecture Behavioral of btn_decoder is
 
 begin
-    debouncer0    : entity work.debouncer port map(clk=>clk, input=>btn(0), output=>nickel);
-    debouncer1    : entity work.debouncer port map(clk=>clk, input=>btn(1), output=>quarter);
-    debouncer2    : entity work.debouncer port map(clk=>clk, input=>btn(2), output=>dollar);
-    debouncer3    : entity work.debouncer port map(clk=>clk, input=>btn(3), output=>submit);
+    debouncer0    : entity work.debouncer port map(clk=>clk, valid=>'1', input=>btn(0), output=>nickel);
+    debouncer1    : entity work.debouncer port map(clk=>clk, valid=>'1', input=>btn(1), output=>quarter);
+    debouncer2    : entity work.debouncer port map(clk=>clk, valid=>'1', input=>btn(2), output=>dollar);
+    debouncer3    : entity work.debouncer port map(clk=>clk, valid=>'1', input=>btn(3), output=>submit);
     --debouncer4    : entity work.debouncer port map(clk=>clk, input=>btn(4), output=>reset);
 
     process (btn(4))

@@ -38,8 +38,8 @@ entity vending_machine is
             sw      : in std_logic_vector(15 downto 0);
             btn     : in std_logic_vector(4 downto 0);
             --rst     : in std_logic;
-            JA      : in std_logic_vector(7 downto 0);
-            JB      : in std_logic_vector(7 downto 0);
+            JA      : inout std_logic_vector(7 downto 0);
+            JB      : inout std_logic_vector(7 downto 0);
             disp    : out std_logic_vector(11 downto 0);
             led     : out std_logic_vector(15 downto 0)
             );
@@ -60,9 +60,11 @@ architecture Behavioral of vending_machine is
     --signal sevsego  : std_logic_vector(11 downto 0);
     signal displayVal   : std_logic_vector(15 downto 0) := (others => '0');
     signal dec          : std_logic_vector(3 downto 0) := (others => '0');
-    signal keypad       : std_logic_vector(4 downto 0) := "11111";
-    signal row          : std_logic_vector(4 downto 0) := "11111";
-    signal col          : std_logic_vector(4 downto 0) := "11111";
+    signal keypad       : std_logic_vector(3 downto 0);
+    signal row          : std_logic_vector(3 downto 0);
+    signal col          : std_logic_vector(3 downto 0);
+    signal validKey     : std_logic;
+    signal key          : std_logic := '0';
 
     
     function binary_to_bcd( input : in unsigned(13 downto 0)) return std_logic_vector is
@@ -107,7 +109,7 @@ begin
     lede    : entity work.led_encoder port map(clk=>clk, input=>ledo, led=>led);
     swd     : entity work.sw_decoder port map(clk=>clk, sw=>sw, output=>swi);
     sevsege : entity work.sevseg_encoder port map(clk=>clk, rst=>reset, input=>displayVal, dec=>dec, sevseg=>disp);
-    kypdd   : entity work.kypd_decoder port map(clk=>clk, input=>JB, output=>keypad);
+    kypdd   : entity work.kypd_decoder port map(clk=>clk, row=>JA(7 downto 4), col=>JA(3 downto 0), valid=>validKey, output=>keypad);
     process (clk, reset) -- Could need to be just btn, not include it, or seperate it from the btn vector
     begin    
         if (reset = '1') then
@@ -126,6 +128,20 @@ begin
                     if (swi(15) = '1') then
                         state <= program;
                     end if;
+                    if (validKey = '1') then
+                        if (key = '0') then
+                            row <= keypad;
+                            key <= '1';
+                        else
+                            col <= keypad;
+                            key <= '0';
+                            state <= vend;
+                        end if;
+                    end if;
+                    displayVal <= "0000" & row & "0000" & col;
+                    ledo <= keypad & "0000" & not JA;
+                    dec <= "0000";
+                when program =>                    
                     if (nickel = '1') then
                         state <= insertingNickel;
                     elsif (quarter = '1') then
@@ -135,26 +151,7 @@ begin
                     elsif (submit = '1') then
                         state <= vend;
                     end if;
-                    if (keypad /= "11111") then
-                        if (row = "11111") then
-                            row <= keypad;
-                        elsif (col = "11111") then
-                            col <= keypad;
-                        else
-                            row <= "11111";
-                            col <= "11111";
-                        end if;
-                    end if;
-                    --displayVal <= binary_to_bcd(total);
-                    --dec <= "0100";
-                    --if (row /= "11111") then
-                        displayVal <= "0000" & row(3 downto 0) & "0000" & col(3 downto 0);
-                    --end if;
-                    --displayVal <= "000000000000" & keypad(3 downto 0);
-                    --ledo <= row & "0" & keypad(3 downto 0) & "0" * col;
-                    ledo <= keypad & "000" & not JB;
-                    dec <= "0000";
-                when program =>
+                    displayVal <= binary_to_bcd(total);
                     if (swi(15) = '0') then
                         state <= idle;
                     end if;
@@ -168,7 +165,13 @@ begin
                     total <= addMoney(total,"0000000" & "1100100");
                     state <= idle;
                 when vend =>
-                    state <= idle;
+                    displayVal <= "0000" & row & "0000" & col;
+                    ledo <= "1010101010101010";
+                    if (swi(14) = '1') then
+                        row <= "0000";
+                        col <= "0000";
+                        state <= idle;
+                    end if;
                 when others =>
                     state <= idle;
             end case;
