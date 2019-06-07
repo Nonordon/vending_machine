@@ -13,7 +13,7 @@ BTNC: Reset System
 BTNU: Insert a nickel  
 BTNQ: Insert a quarter  
 BTND: Inster a dollar  
-BTNL: Submit order request  
+BTNL: Return Change (Also clears input keypad presses)
   
 PmodKYPD: 16 button keypad with numbers 0 through 9 and letters A through F. Used to choose which item to purchase.  
   
