@@ -36,7 +36,7 @@ BTNL: Program slot with current price entered.
   
 PmodKYPD: 16 button keypad with numbers 0 through 9 and letters A through F. Used to choose which item to program.
   
-SW0: When low, device is operating in purchasing mode. When high the device is operating in programming mode.  
+SW15: When low, device is operating in purchasing mode. When high the device is operating in programming mode.  
   
 ### Output
 
